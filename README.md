@@ -1,7 +1,7 @@
 # Deb8
 Real-time Chat App using Javasript and socket.io
+![image](https://user-images.githubusercontent.com/62300368/163442879-0d1dac4d-be64-4e84-ade0-d9089d4973b6.png)
 
-![image](https://user-images.githubusercontent.com/62300368/163442155-a9882de7-7fee-44a1-969b-e570d12db731.png)
 
 #heroku link
 Link: https://floating-tundra-61987.herokuapp.com/
