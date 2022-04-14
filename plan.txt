@@ -1,0 +1,13 @@
+. create npm project
+
+. create index css javascript
+
+. install dependencies(Express,Nodemon)
+
+. create a express server(server.js)
+
+. front end     
+
+.install socket.io.incluse in server and client
+
+.client message logic
