@@ -1,31 +1,21 @@
-const express=require('express')
-const app= express();
-const http = require('http').createServer(app)
+const express=require("express");
+const path=require("path");
 
+const app=express();
+const server = require("http").createServer(app);
 
+const io=require("socket.io")(server);
 
-const PORT = process.env.PORT || 3000
-
-http.listen(PORT,()=>{
-    console.log(`Listening on port ${PORT}`);
-})
-
-app.use(express.static(__dirname + '/public'))
-
-app.get('/',(req,res)=>{
-    res.sendFile(__dirname + '/index.html')
-})
-
-// socket
- const io = require('socket.io')(http)
-
- io.on('connection',(socket)=>{
-    console.log('Connected...')
-    // socket.on('new-user-joined',name=>{
-    //     users[socket.id]=name;
-    // })
-    socket.on('message',(msg)=>{
-        socket.broadcast.emit('message',msg)
-    })
-
- })
+app.use(express.static(path.join(__dirname+"/public")));
+io.on("connection",function(socket){
+    socket.on("newuser",function(username){
+        socket.broadcast.emit("update",username + " joined the conversation");
+    });
+    socket.on("exituser",function(username){
+        socket.broadcast.emit("update",username + " left the conversation");
+    });
+    socket.on("chat",function(message){
+        socket.broadcast.emit("chat",message);
+    });
+});
+server.listen(5000);
